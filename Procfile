@@ -1,0 +1,1 @@
+web: cd CTFd && gunicorn --bind 0.0.0.0:$PORT --workers 1 'CTFd:create_app()'

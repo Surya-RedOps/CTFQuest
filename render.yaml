@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: ctf-platform
+    env: python
+    buildCommand: pip install -r CTFd/requirements.txt
+    startCommand: cd CTFd && gunicorn --bind 0.0.0.0:$PORT --workers 1 'CTFd:create_app()'
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: UPLOAD_FOLDER
+        value: /tmp/uploads
+      - key: LOG_FOLDER
+        value: /tmp/logs
+      - key: REVERSE_PROXY
+        value: true
+      - key: FLASK_ENV
+        value: production
